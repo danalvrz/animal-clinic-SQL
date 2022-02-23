@@ -26,3 +26,36 @@ INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) 
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) VALUES ('Angemon', '2005-06-12', -45, FALSE, 1);
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) VALUES ('Boarmon', '2005-06-07', 20.4, TRUE, 7);
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) VALUES ('Blossom', '1998-10-13', 17, TRUE, 3);
+
+/*
+Sam Smith 34 years old. id = 1
+Jennifer Orwell 19 years old. id = 2
+Bob 45 years old. id = 3
+Melody Pond 77 years old. id = 4
+Dean Winchester 14 years old. id = 5
+Jodie Whittaker 38 years old. id = 6
+*/
+
+BEGIN;
+INSERT INTO owners (full_name, age) VALUES ('Sam Smith', 34), ('Jennifer Orwell', 19), ('Bob', 45), ('Melody Pond', 77), ('Dean Winchester', 14), ('Josie Whittaker', 38);
+INSERT INTO species (name) VALUES ('Pokemon'), ('Digimon');
+COMMIT;
+SELECT * FROM owners;
+SELECT * FROM species;
+
+BEGIN;
+SELECT * FROM animals;
+UPDATE animals SET species_id = 2 WHERE name LIKE '%mon';
+UPDATE animals SET species_id = 1 WHERE species_id IS NULL;
+COMMIT;
+SELECT * FROM animals;
+
+BEGIN;
+SELECT * FROM animals;
+UPDATE animals SET owner_id = 1 WHERE name = 'Agumon';
+UPDATE animals SET owner_id = 2 WHERE name = 'Gabumon' OR name = 'Pikachu';
+UPDATE animals SET owner_id = 3 WHERE name = 'Devimon' OR name = 'Plantmon';
+UPDATE animals SET owner_id = 4 WHERE name = 'Charmander' OR name = 'Squirtle' OR name = 'Blossom';
+UPDATE animals SET owner_id = 5 WHERE name = 'Angemon' OR name = 'Boarmon';
+COMMIT;
+SELECT * FROM animals;
